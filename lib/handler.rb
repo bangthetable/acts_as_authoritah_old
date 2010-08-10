@@ -15,6 +15,9 @@ module ActsAsAuthorizable
         if method_name =~ CAN_METHOD 
           method_name.chop! if method_name[-1].chr == "?"
           handle_can_methods(method_name.gsub(r1,""),args)
+          
+          #TO-DO - non existant can_* methods should call "super" 
+          #so that undefined method error is thrown
         else 
           super(method_name.to_sym,*args)
         end  

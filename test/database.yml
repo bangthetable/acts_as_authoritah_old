@@ -1,0 +1,6 @@
+mysql:
+  adapter: mysql
+  username: root
+  password: 
+  encoding: utf8
+  database: acts_as_authorized_unittest

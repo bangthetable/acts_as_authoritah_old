@@ -24,3 +24,7 @@ end
 Factory.define :anonymous_user, :parent => :user do |u|
   u.usertype "anonymous"
 end
+
+Factory.define :panel_user, :parent => :user do |u|
+  u.usertype "panel"
+end

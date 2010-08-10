@@ -1,14 +1,18 @@
 require "active_record"
 require "spreadsheet"
 
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
+p $LOAD_PATH
+
+require "loader"
+
+$LOAD_PATH.shift
+
 Spreadsheet.client_encoding = 'UTF-8'
 
 module ActsAsAuthorizable
-  module Main
-    def acts_as_authorizable(args={})
-      AccessRights::load('access_rights.xls')
-    end
-  end
+  include Loader
   
   module Handler
     class_eval do

@@ -14,9 +14,9 @@ module ActsAsAuthorizable
         
         if method_name =~ CAN_METHOD 
           method_name.chop! if method_name[-1].chr == "?"
-           handle_can_methods(method_name.gsub(r1,""),args)
+          handle_can_methods(method_name.gsub(r1,""),args)
         else 
-           super(method_name.to_sym,*args)
+          super(method_name.to_sym,*args)
         end  
       end  
       

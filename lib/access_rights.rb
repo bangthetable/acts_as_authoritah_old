@@ -1,6 +1,10 @@
 module ActsAsAuthorizable
   module AccessRights
     Default = Hash.new
+    
+    def self.feature_list
+      Default.keys.collect(&:downcase)
+    end
         
     def self.load(file)
       hash = Default

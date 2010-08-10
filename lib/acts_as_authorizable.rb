@@ -3,66 +3,16 @@ require "spreadsheet"
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-p $LOAD_PATH
-
 require "loader"
+require "handler"
+require "access_rights"
 
 $LOAD_PATH.shift
 
 Spreadsheet.client_encoding = 'UTF-8'
 
-module ActsAsAuthorizable
-  include Loader
-  
-  module Handler
-    class_eval do
-      def handle_can_methods(feature_name,args)
-        object   = args.first
-        acl = AccessRights::Default.clone
-        acl[feature_name][usertype]
-      end  
-
-      def method_missing(method_name,*args)
-        r  = /^can_(.*)/
-        r1 = /^can_/
-        method_name = method_name.to_s
-        
-        if method_name =~ r 
-          method_name.chop! if method_name[-1].chr == "?"
-           handle_can_methods(method_name.gsub(r1,""),args)
-        else 
-           super(method_name.to_sym,*args)
-        end  
-        
-      end  
-    end
-  end
-  
-  module AccessRights
-    Default = Hash.new
-        
-    def self.load(file)
-      hash = Default
-      book = Spreadsheet.open file
-      sheet = book.worksheets.first
-      
-      sheet.each do |row|
-        h = Hash.new
-        feature_name = row[0]
-        
-        ['admin','client','project','panel','registered','anonymous'].each_with_index do |key,i|
-          value = row[i+2] ? true : false
-          h[key]=value
-        end  
-        hash[feature_name] = h
-      end
-    end
-  end
-end
-
-
 if defined?(ActiveRecord::Base)
-  ActiveRecord::Base.extend ActsAsAuthorizable::Main
+  ActiveRecord::Base.extend ActsAsAuthorizable::Loader
   ActiveRecord::Base.send :include, ActsAsAuthorizable::Handler
 end
 

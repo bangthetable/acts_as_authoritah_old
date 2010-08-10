@@ -1,7 +1,7 @@
 module ActsAsAuthorizable
   module Loader
     def acts_as_authorizable(args={})
-      AccessRights::load('access_rights.xls')
+      AccessRights::load(args[:acl])
     end
   end
 end

@@ -13,7 +13,7 @@ ActiveRecord::Base.establish_connection(conn_hash)
 
 
 class User < ActiveRecord::Base
-  acts_as_authorizable :acl => "access_rights.xls"
+  acts_as_authorizable :acl => "~/Desktop/access_rights.xls"
   
   def usertype
     "admin"

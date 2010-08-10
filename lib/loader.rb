@@ -1,7 +1,11 @@
 module ActsAsAuthorizable
   module Loader
     def acts_as_authorizable(args={})
-      AccessRights::load(args[:acl])
+      if File.exists?(args[:acl])
+        AccessRights::load(args[:acl])
+      else
+        raise ActsAsAuthorizable::AccessRights::FileNotFound
+      end
     end
   end
 end

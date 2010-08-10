@@ -6,6 +6,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require "loader"
 require "handler"
 require "access_rights"
+require "custom_exceptions"
 
 $LOAD_PATH.shift
 

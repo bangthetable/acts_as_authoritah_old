@@ -1,6 +1,9 @@
 = acts_as_authorizable
 
-Description goes here.
+In config/environment.rb add 
+require 'acts_as_authorizable'
+
+ActsAsAuthorizable::AccessRights::FileNotFound - if acl file is not found in the specified location
 
 == Note on Patches/Pull Requests
  

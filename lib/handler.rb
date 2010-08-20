@@ -3,10 +3,9 @@ module ActsAsAuthorizable
     CAN_METHOD  = /^can_(.*)/
     class_eval do
       def handle_can_methods(feature_name,args)
-        object   = args.first
         acl = AccessRights::Default.clone
         raise ActsAsAuthorizable::AccessRights::RuleNotDefined unless acl.has_key?(feature_name)
-        acl[feature_name][usertype]
+        acl[feature_name][usertype(args.first)]
       end  
 
       def method_missing(method_name,*args)

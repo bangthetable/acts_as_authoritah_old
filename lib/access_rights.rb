@@ -1,11 +1,19 @@
 module ActsAsAuthorizable
+  def deny_unauthorized_access
+    if File.exists?("#{Rails.public_path}/401.html") and !request.xhr?
+      render :file => "#{Rails.public_path}/401.html", :status => :unauthorized and return
+    else
+      render :text => "access denied", :status => :unauthorized and return 
+    end
+  end
+  
   module AccessRights
     Default = Hash.new
     
     def self.feature_list
       Default.keys.collect(&:downcase)
     end
-        
+    
     def self.load(file)
       hash = Default
       book = Spreadsheet.open file

@@ -5,6 +5,8 @@ require 'acts_as_authorizable'
 
 ActsAsAuthorizable::AccessRights::FileNotFound - if acl file is not found in the specified location
 
+include ActsAsAuthorizable in application.rb
+
 == Note on Patches/Pull Requests
  
 * Fork the project.

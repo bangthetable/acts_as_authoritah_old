@@ -1,6 +1,8 @@
 module ActsAsAuthorizable
   module AccessRights
-    class FileNotFound < RuntimeError; end
+    class UnknownContext < RuntimeError; end
+    class AclFilesNotFound < RuntimeError; end
+    class AclFolderNotFound < RuntimeError; end
     class RuleNotDefined < RuntimeError; end
   end
 end

@@ -4,8 +4,16 @@ module ActsAsAuthorizable
     class_eval do
       def handle_can_methods(feature_name,args)
         acl = AccessRights::Default.clone
+        
+        if args.is_a?(Array) and !args.empty? and args.first[:context]
+          context = args.first[:context].to_s
+          raise ActsAsAuthorizable::AccessRights::UnknownContext unless AccessRights::contexts.include?(context)
+          acl.merge! AccessRights::ACL[context]
+        end
+        
         raise ActsAsAuthorizable::AccessRights::RuleNotDefined unless acl.has_key?(feature_name)
-        acl[feature_name][usertype(args.first)]
+        
+        args.is_a?(Array) and !args.empty? ? acl[feature_name][usertype(args.first)] : acl[feature_name][usertype]
       end  
 
       def method_missing(method_name,*args)
@@ -15,9 +23,6 @@ module ActsAsAuthorizable
         if method_name =~ CAN_METHOD 
           method_name.chop! if method_name[-1].chr == "?"
           handle_can_methods(method_name.gsub(r1,""),args)
-          
-          #TO-DO - non existant can_* methods should call "super" 
-          #so that undefined method error is thrown
         else 
           super(method_name.to_sym,*args)
         end  

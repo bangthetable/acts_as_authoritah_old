@@ -8,14 +8,30 @@ module ActsAsAuthorizable
   end
   
   module AccessRights
-    Default = Hash.new
+    ACL     = Hash.new
+    Default = Hash.new  
     
     def self.feature_list
       Default.keys.collect(&:downcase)
     end
     
+    def self.contexts
+      ACL.keys.collect(&:downcase)
+    end
+    
+    def self.load_all_files(dir,default_file="default.xls")
+      Dir.xls_files(dir).each do |file|
+        acl_type = file.split(".").first
+        ACL[acl_type] = load(File.join(dir,file)) 
+      end
+      
+      (ACL[default_file.split(".").first] || {}).each_pair do |key,value|
+        Default[key] = value
+      end
+    end
+    
     def self.load(file)
-      hash = Default
+      hash = {}
       book = Spreadsheet.open file
       sheet = book.worksheets.first
       
@@ -43,6 +59,7 @@ module ActsAsAuthorizable
         end  
         hash[feature_name] = h
       end
+      return hash
     end
   end
 end

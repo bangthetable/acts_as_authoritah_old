@@ -7,6 +7,8 @@ ActsAsAuthorizable::AccessRights::FileNotFound - if acl file is not found in the
 
 include ActsAsAuthorizable in application.rb
 
+one file is mandatory - default.xls, or specify a :default =>
+
 == Note on Patches/Pull Requests
  
 * Fork the project.

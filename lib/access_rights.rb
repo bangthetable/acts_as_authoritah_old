@@ -10,11 +10,16 @@ module ActsAsAuthorizable
   module AccessRights
     ACL     = Hash.new
     Default = Hash.new  
+    Urls    = {}
     
     def self.feature_list
       Default.keys.collect(&:downcase)
     end
     
+    def self.access_url(feature)
+      Urls[feature.downcase]
+    end
+        
     def self.contexts
       ACL.keys.collect(&:downcase)
     end
@@ -35,6 +40,8 @@ module ActsAsAuthorizable
       book = Spreadsheet.open file
       sheet = book.worksheets.first
       
+      urls_column_index = -1
+      
       usertypes = []
       
       sheet.each do |row|
@@ -43,7 +50,10 @@ module ActsAsAuthorizable
           while true
             usertype = row[k]
             break unless usertype
-            usertypes << usertype
+            
+            usertypes << usertype unless usertype.downcase == "url"
+            urls_column_index = k if usertype.downcase == "url"
+            
             k += 1
           end
           usertypes = usertypes.collect(&:downcase)
@@ -52,6 +62,10 @@ module ActsAsAuthorizable
         
         h = Hash.new
         feature_name = row[0]
+        
+        next unless feature_name
+        
+        Urls[feature_name] = row[urls_column_index] unless urls_column_index == -1
         
         usertypes.each_with_index do |key,i|
           value = row[i+2] ? true : false

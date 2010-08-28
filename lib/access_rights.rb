@@ -64,6 +64,7 @@ module ActsAsAuthorizable
         feature_name = row[0]
         
         next unless feature_name
+        feature_name.strip!
         
         Urls[feature_name] = row[urls_column_index] unless urls_column_index == -1
         

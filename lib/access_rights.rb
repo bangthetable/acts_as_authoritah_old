@@ -16,6 +16,14 @@ module ActsAsAuthorizable
       Default.keys.collect(&:downcase)
     end
     
+    def self.urls(context)
+      h = {}
+      ACL[context].keys.collect(&:downcase).each do |feature|
+        h[feature] = access_url(feature)
+      end
+      h
+    end
+    
     def self.access_url(feature)
       Urls[feature.downcase]
     end

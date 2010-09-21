@@ -77,7 +77,7 @@ module ActsAsAuthorizable
         Urls[feature_name] = row[urls_column_index] unless urls_column_index == -1
         
         usertypes.each_with_index do |key,i|
-          value = row[i+2] ? true : false
+          value = (row[i+2] and row[i+2].include?('x')) ? true : false
           h[key]=value
         end  
         hash[feature_name] = h

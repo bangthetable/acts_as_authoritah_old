@@ -13,7 +13,7 @@ $LOAD_PATH.shift
 Spreadsheet.client_encoding = 'UTF-8'
 
 if defined?(ActiveRecord::Base)
-  ActiveRecord::Base.extend ActsAsAuthorizable::Loader
-  ActiveRecord::Base.send :include, ActsAsAuthorizable::Handler
+  ActiveRecord::Base.extend Authoritah::Loader
+  ActiveRecord::Base.send :include, Authoritah::Handler
 end
 

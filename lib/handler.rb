@@ -1,4 +1,4 @@
-module ActsAsAuthorizable
+module Authoritah
   module Handler
     CAN_METHOD  = /^can_(.*)/
     class_eval do
@@ -7,11 +7,11 @@ module ActsAsAuthorizable
         
         if args.is_a?(Array) and !args.empty? and args.first[:context]
           context = args.first[:context].to_s
-          raise ActsAsAuthorizable::AccessRights::UnknownContext unless AccessRights::contexts.include?(context)
+          raise Authoritah::AccessRights::UnknownContext unless AccessRights::contexts.include?(context)
           acl.merge! AccessRights::ACL[context]
         end
         
-        raise ActsAsAuthorizable::AccessRights::RuleNotDefined unless acl.has_key?(feature_name)
+        raise Authoritah::AccessRights::RuleNotDefined unless acl.has_key?(feature_name)
         
         args.is_a?(Array) and !args.empty? ? acl[feature_name][usertype(args.first)] : acl[feature_name][usertype]
       end  

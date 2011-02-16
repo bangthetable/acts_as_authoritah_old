@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "acts_as_authorizable"
+    gem.name = "authoritah"
     gem.summary = %Q{role based access rights for a user specified via spreadsheet}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "unni.tallman@gmail.com"
@@ -50,7 +50,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "acts_as_authorizable #{version}"
+  rdoc.title = "authoritah #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

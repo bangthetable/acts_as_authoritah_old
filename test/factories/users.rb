@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_authorizable :acl => File.join(File.dirname(__FILE__), '..','input','access_rights.xls')
+  authoritah :acl => File.join(File.dirname(__FILE__), '..','input','access_rights.xls')
 end
 
 Factory.define :user do |u|

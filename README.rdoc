@@ -1,11 +1,11 @@
-= acts_as_authorizable
+= authoritah
 
 In config/environment.rb add 
-require 'acts_as_authorizable'
+require 'authoritah'
 
-ActsAsAuthorizable::AccessRights::FileNotFound - if acl file is not found in the specified location
+Authoritah::AccessRights::FileNotFound - if acl file is not found in the specified location
 
-include ActsAsAuthorizable in application.rb
+include Authoritah in application.rb
 
 one file is mandatory - default.xls, or specify a :default =>
 
@@ -22,4 +22,4 @@ one file is mandatory - default.xls, or specify a :default =>
 
 == Copyright
 
-Copyright (c) 2010 Unnikrishnan KP. See LICENSE for details.
+Copyright (c) 2010 Bang The Table. See LICENSE for details.

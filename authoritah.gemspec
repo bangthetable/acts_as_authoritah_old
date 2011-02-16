@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{acts_as_authorizable}
+  s.name = %q{authoritah}
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -23,13 +23,13 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "acts_as_authorizable.gemspec",
-     "lib/acts_as_authorizable.rb",
+     "authoritah.gemspec",
+     "lib/authoritah.rb",
      "lib/loader.rb",
      "lib/handler.rb",
      "lib/access_rights.rb",
      "lib/custom_exceptions.rb",
-     "test/acts_as_authorizable_test.rb",
+     "test/authoritah_test.rb",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/unni123/acts_as_authorizable}
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{role based access rights for a user specified via spreadsheet}
   s.test_files = [
-    "test/acts_as_authorizable_test.rb",
+    "test/authoritah_test.rb",
      "test/test_helper.rb"
   ]
 

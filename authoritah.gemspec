@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
      "test/authoritah_test.rb",
      "test/test_helper.rb"
   ]
-  s.homepage = %q{http://github.com/unni123/acts_as_authorizable}
+  s.homepage = %q{https://github.com/bangthetable/authoritah/}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}

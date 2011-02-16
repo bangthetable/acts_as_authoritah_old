@@ -7,8 +7,8 @@ begin
     gem.name = "authoritah"
     gem.summary = %Q{role based access rights for a user specified via spreadsheet}
     gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "unni.tallman@gmail.com"
-    gem.homepage = "http://github.com/unni123/acts_as_authorizable"
+    gem.email = "unni@bangthetable.com"
+    gem.homepage = "https://github.com/bangthetable/authoritah/"
     gem.authors = ["Unnikrishnan KP"]
     gem.add_development_dependency "thoughtbot-shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings

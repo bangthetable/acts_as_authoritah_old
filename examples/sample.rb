@@ -1,5 +1,5 @@
 require "rubygems"
-require "authoritah"
+require "acts_as_authoritah"
 
 conn_hash = {
   :database => "coogeevillage",
@@ -13,7 +13,7 @@ ActiveRecord::Base.establish_connection(conn_hash)
 
 
 class User < ActiveRecord::Base
-  authoritah :acl => "~/Desktop/access_rights.xls"
+  acts_as_authoritah :acl => "~/Desktop/access_rights.xls"
   
   def usertype
     "admin"

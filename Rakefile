@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "authoritah"
+    gem.name = "acts_as_authoritah"
     gem.summary = %Q{role based access rights for a user specified via spreadsheet}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "unni@bangthetable.com"
-    gem.homepage = "https://github.com/bangthetable/authoritah/"
+    gem.homepage = "https://github.com/bangthetable/acts_as_authoritah/"
     gem.authors = ["Unnikrishnan KP"]
     gem.add_development_dependency "thoughtbot-shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
@@ -50,7 +50,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "authoritah #{version}"
+  rdoc.title = "acts_as_authoritah #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

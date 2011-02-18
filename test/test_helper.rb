@@ -5,7 +5,7 @@ require 'factory_girl'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'activerecord_test_connector' 
-require 'authoritah'
+require 'acts_as_authoritah'
 
 ActiveRecordTestConnector.setup
 

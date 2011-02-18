@@ -3,4 +3,4 @@ mysql:
   username: root
   password: 
   encoding: utf8
-  database: authoritah_unittest
+  database: acts_as_authoritah_unittest

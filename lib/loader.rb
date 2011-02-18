@@ -1,7 +1,7 @@
-module Authoritah
+module ActsAsAuthoritah
   module Loader
     
-    def authoritah(args={})
+    def acts_as_authoritah(args={})
       if File.exists?(args[:acl_folder]) and Dir.has_xls_files?(args[:acl_folder])
         if args[:default]
           AccessRights::load_all_files(args[:acl_folder],args[:default])
@@ -9,9 +9,9 @@ module Authoritah
           AccessRights::load_all_files(args[:acl_folder])
         end
       elsif !Dir.has_xls_files?(args[:acl_folder])
-        raise Authoritah::AccessRights::AclFilesNotFound
+        raise ActsAsAuthoritah::AccessRights::AclFilesNotFound
       else
-        raise Authoritah::AccessRights::AclFolderNotFound
+        raise ActsAsAuthoritah::AccessRights::AclFolderNotFound
       end
     end
     

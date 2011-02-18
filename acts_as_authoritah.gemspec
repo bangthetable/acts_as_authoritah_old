@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{authoritah}
+  s.name = %q{acts_as_authoritah}
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -23,22 +23,22 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "authoritah.gemspec",
-     "lib/authoritah.rb",
+     "acts_as_authoritah.gemspec",
+     "lib/acts_as_authoritah.rb",
      "lib/loader.rb",
      "lib/handler.rb",
      "lib/access_rights.rb",
      "lib/custom_exceptions.rb",
-     "test/authoritah_test.rb",
+     "test/acts_as_authoritah_test.rb",
      "test/test_helper.rb"
   ]
-  s.homepage = %q{https://github.com/bangthetable/authoritah/}
+  s.homepage = %q{https://github.com/bangthetable/acts_as_authoritah/}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{role based access rights for a user specified via spreadsheet}
   s.test_files = [
-    "test/authoritah_test.rb",
+    "test/acts_as_authoritah_test.rb",
      "test/test_helper.rb"
   ]
 

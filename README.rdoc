@@ -1,11 +1,11 @@
-= authoritah
+= acts_as_authoritah
 
 In config/environment.rb add 
-require 'authoritah'
+require 'acts_as_authoritah'
 
-Authoritah::AccessRights::FileNotFound - if acl file is not found in the specified location
+ActsAsAuthoritah::AccessRights::FileNotFound - if acl file is not found in the specified location
 
-include Authoritah in application.rb
+include ActsAsAuthoritah in application.rb
 
 one file is mandatory - default.xls, or specify a :default =>
 

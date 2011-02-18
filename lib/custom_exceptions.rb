@@ -1,4 +1,4 @@
-module Authoritah
+module ActsAsAuthoritah
   module AccessRights
     class UnknownContext < RuntimeError; end
     class AclFilesNotFound < RuntimeError; end

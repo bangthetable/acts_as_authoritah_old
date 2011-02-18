@@ -1,4 +1,4 @@
-module Authoritah
+module ActsAsAuthoritah
   def deny_unauthorized_access
     if File.exists?("#{Rails.public_path}/401.html") and !request.xhr?
       render :file => "#{Rails.public_path}/401.html", :status => :unauthorized and return

@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class AuthoritahTest < Test::Unit::TestCase
+class ActsAsAuthoritahTest < Test::Unit::TestCase
   def test_responds_to_all_can_methods
-    can_methods = Authoritah::AccessRights::feature_list.collect{|feature| 'can_' + feature + '?'}
+    can_methods = ActsAsAuthoritah::AccessRights::feature_list.collect{|feature| 'can_' + feature + '?'}
     assert_respond_to_all Factory.build(:anonymous_user),can_methods
   end
   
@@ -11,7 +11,7 @@ class AuthoritahTest < Test::Unit::TestCase
   end
   
   def test_can_methods_should_function_as_per_the_access_rights_specified_in_spead_sheet
-    spreadsheet_hash = Authoritah::AccessRights::Default
+    spreadsheet_hash = ActsAsAuthoritah::AccessRights::Default
     
     spreadsheet_hash.each_pair {|feature,hash|
       can_method = 'can_' + feature + '?'

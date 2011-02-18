@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Unnikrishnan KP"]
+  s.authors = ["BangTheTable","Unnikrishnan KP"]
   s.date = %q{2010-08-10}
   s.description = %q{role based access rights for a user specified via spreadsheet}
-  s.email = %q{unni.tallman@gmail.com}
+  s.email = %q{devteam@bangthetable.com, unni.tallman@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"

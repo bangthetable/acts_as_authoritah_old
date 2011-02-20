@@ -42,6 +42,6 @@ Gem::Specification.new do |s|
      "test/test_helper.rb"
   ]
 
-  #s.add_dependency(%q<spreadsheet>, [">= 0"])
+  s.add_dependency(%q<spreadsheet>, [">= 0"])
       
 end

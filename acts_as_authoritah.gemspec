@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/loader.rb",
      "lib/handler.rb",
      "lib/access_rights.rb",
+     "lib/access_control.rb",
      "lib/custom_exceptions.rb",
      "test/acts_as_authoritah_test.rb",
      "test/test_helper.rb"

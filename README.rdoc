@@ -1,13 +1,103 @@
 = acts_as_authoritah
 
-In config/environment.rb add 
-require 'acts_as_authoritah'
+INSTALLATION
 
-ActsAsAuthoritah::AccessRights::FileNotFound - if acl file is not found in the specified location
+gem install acts_as_authoritah
 
-include ActsAsAuthoritah in application.rb
+Rails 2.*
+Add in environemnt.rb
+  config.gem 'acts_as_authoritah'
 
-one file is mandatory - default.xls, or specify a :default =>
+Rails 3.*
+Add in Gemfile
+  gem 'acts_as_authoritah'
+
+A sample blogging app.
+
+ - Creating blog posts.
+ - Editing blog posts.
+ - Commenting on blog posts.
+
+A blog post when first created will be in unpublished state. The post can be published later.
+
+User Roles and capabilities.
+
+- Author
+   - He can create blog posts
+   - He can edit posts
+   - He can view blog posts
+   - He cannot add comments
+- Logged-in user (who has signed up)
+   - He can view blog posts
+   - He can comment on blog posts
+   - He cannot create blog posts
+   - He cannot edit blog posts
+- anonymous user 
+   - He can view blog posts
+   - He cannot add comments
+   - He cannot create blog posts
+   - He cannot edit blog posts
+admin
+   - unrestricted access to everything.
+
+
+When post is unpublished
+
+- Logged-in user (who has signed up)
+   - He cannot comment on blog posts
+   - He cannot view blog posts.
+
+
+Getting this done with ActsAsAuthoritah
+
+1. Create an excel sheet (or download a sample from here and modify) and save it at config/acl/default.xls (create the folder first time)
+   When the post is unpublished, there are two rules which are different from the default set of rules. We need to these two rules alone in config/acl/unpublished.xls (download here).
+
+2. Add the following line to your User model (or to whichever is your equivalent of User model)
+
+    acts_as_authoritah :acl_folder => File.join(RAILS_ROOT,"config","acl")
+
+3. In your User model, you need to define a 'usertype' method which should return the role of that user (same as in the first row of the spreadsheet).
+
+   A sample - 
+
+   def usertype(args={})
+     role.name
+   end
+
+   Implementation of usertype method can vary, based on the role-system you are following. Just make sure it always returns role of the user (string), which should match with the roles
+   specified in the first row of the spreadsheet.
+
+4. ActsAsAuthoritah needs a wrapper around your 'current_user' method (name may differ based on the authentication system you use), to make it return an empty User object when 
+   user is not logged in.
+
+   A sample - 
+
+   def present_user
+      current_user.to_s == "false" ? User.new : current_user
+   end
+
+5. in Post model
+
+   def status
+     published? ? nil : 'unpublished'
+   end
+
+   This will be used to let authoritah know when a post in in unpublished state, so that authoritah can override the default rules with those in unpublished.xls
+
+6. For access control of methods in PostController and CommentController, put these two files post_controller_access.rb , comments_controller_access.rb in lib/access_control/
+
+7. To make sure that links are shown only to appropriate users, add lines like these in in the views.
+
+   <% if present_user.can_post_a_comment?(:context => @post.status) %>
+     <%= link_to 'Add a comment', {:controller => 'comment', :action => 'new', :post_id => @post.id} %>
+   <% end%>
+
+8. Thats all - your application is access controlled by ActsAsAuthoritah now. 
+
+   - You can grant/revoke access to different features to different roles just by editing the spreadsheets.
+   - You can add a new user-role by adding a column in the spreadsheets.
+   - If your application needs to have one more context (say, archived posts), you can do that by adding one more spreadsheet called archived.xls.
 
 == Note on Patches/Pull Requests
  

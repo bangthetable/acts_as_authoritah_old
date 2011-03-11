@@ -27,7 +27,7 @@ User Roles and capabilities.
    He can edit posts
    He can view blog posts
    He cannot add comments
-- Logged-in user (who has signed up)
+- Registered user (who has signed up and logged-in)
    He can view blog posts
    He can comment on blog posts
    He cannot create blog posts
@@ -51,24 +51,13 @@ When post is unpublished
 Getting this done with ActsAsAuthoritah
 
 1. Create an excel sheet (or download a sample from here and modify) and save it at config/acl/default.xls (create the folder first time)
-   When the post is unpublished, there are two rules which are different from the default set of rules. We need to these two rules alone in config/acl/unpublished.xls (download here).
+   When the post is unpublished, there are two rules which are different from the default set of rules. We need to add these two rules alone in config/acl/unpublished.xls (download here).
 
 2. Add the following line to your User model (or to whichever is your equivalent of User model)
 
     acts_as_authoritah :acl_folder => File.join(RAILS_ROOT,"config","acl")
 
-3. In your User model, you need to define a 'usertype' method which should return the role of that user (same as in the first row of the spreadsheet).
-
-   A sample - 
-
-     def usertype(args={})
-       role.name
-     end
-
-   Implementation of usertype method can vary, based on the role-system you are following. Just make sure it always returns role of the user (string), which should match with the roles
-   specified in the first row of the spreadsheet.
-
-4. ActsAsAuthoritah needs a wrapper around your 'current_user' method (name may differ based on the authentication system you use), to make it return an empty User object when 
+3. ActsAsAuthoritah needs a wrapper around your 'current_user' method (name may differ based on the authentication system you use), to make it return an empty User object when
    user is not logged in.
 
    A sample - 
@@ -76,6 +65,20 @@ Getting this done with ActsAsAuthoritah
      def present_user
        current_user.to_s == "false" ? User.new : current_user
      end
+
+4. In your User model, you need to define a 'usertype' method which should return the role of that user (same as in the first row of the spreadsheet).
+
+   A sample -
+
+     def usertype(args={})
+       return role.name if role
+       return "anonymous" if new_record?
+       return "registered"
+     end
+
+   Implementation of usertype method can vary, based on the role-system you are following. Just make sure it always returns role of the user (string), which should match with the roles
+   specified in the first row of the spreadsheet.
+
 
 5. in Post model
 

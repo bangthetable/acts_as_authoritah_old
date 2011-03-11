@@ -61,9 +61,9 @@ Getting this done with ActsAsAuthoritah
 
    A sample - 
 
-   def usertype(args={})
-   role.name
-   end
+     def usertype(args={})
+       role.name
+     end
 
    Implementation of usertype method can vary, based on the role-system you are following. Just make sure it always returns role of the user (string), which should match with the roles
    specified in the first row of the spreadsheet.
@@ -73,15 +73,15 @@ Getting this done with ActsAsAuthoritah
 
    A sample - 
 
-   def present_user
-   current_user.to_s == "false" ? User.new : current_user
-   end
+     def present_user
+       current_user.to_s == "false" ? User.new : current_user
+     end
 
 5. in Post model
 
-   def status
-   published? ? nil : 'unpublished'
-   end
+     def status
+       published? ? nil : 'unpublished'
+     end
 
    This will be used to let authoritah know when a post in in unpublished state, so that authoritah can override the default rules with those in unpublished.xls
 

@@ -50,8 +50,9 @@ When post is unpublished
 
 = Getting this done with ActsAsAuthoritah
 
-1. Create an excel sheet (or download a sample from <a href="https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls">here</a> and modify) and save it at config/acl/default.xls (create the folder first time)
-   When the post is unpublished, there are two rules which are different from the default set of rules. We need to add these two rules alone in config/acl/unpublished.xls (download <a href="https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls">here</a>).
+1. Create an excel sheet (or download a sample here [https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls] and modify)
+   and save it at config/acl/default.xls (create the folder first time). When the post is unpublished, there are two rules which are different
+   from the default set of rules. We need to add these two rules alone in config/acl/unpublished.xls (download here [https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls]
 
 2. Add the following line to your User model (or to whichever is your equivalent of User model)
 

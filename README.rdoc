@@ -12,7 +12,7 @@ Rails 3.*
 Add in Gemfile
   gem 'acts_as_authoritah'
 
-A sample blogging app.
+= A sample blogging app.
 
  - Creating blog posts.
  - Editing blog posts.
@@ -48,10 +48,10 @@ When post is unpublished
     He cannot view blog posts.
 
 
-Getting this done with ActsAsAuthoritah
+= Getting this done with ActsAsAuthoritah
 
-1. Create an excel sheet (or download a sample from here and modify) and save it at config/acl/default.xls (create the folder first time)
-   When the post is unpublished, there are two rules which are different from the default set of rules. We need to add these two rules alone in config/acl/unpublished.xls (download here).
+1. Create an excel sheet (or download a sample from <a href="https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls">here</a> and modify) and save it at config/acl/default.xls (create the folder first time)
+   When the post is unpublished, there are two rules which are different from the default set of rules. We need to add these two rules alone in config/acl/unpublished.xls (download <a href="https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls">here</a>).
 
 2. Add the following line to your User model (or to whichever is your equivalent of User model)
 

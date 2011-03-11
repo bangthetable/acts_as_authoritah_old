@@ -23,29 +23,29 @@ A blog post when first created will be in unpublished state. The post can be pub
 User Roles and capabilities.
 
 - Author
-   - He can create blog posts
-   - He can edit posts
-   - He can view blog posts
-   - He cannot add comments
+   He can create blog posts
+   He can edit posts
+   He can view blog posts
+   He cannot add comments
 - Logged-in user (who has signed up)
-   - He can view blog posts
-   - He can comment on blog posts
-   - He cannot create blog posts
-   - He cannot edit blog posts
+   He can view blog posts
+   He can comment on blog posts
+   He cannot create blog posts
+   He cannot edit blog posts
 - anonymous user 
-   - He can view blog posts
-   - He cannot add comments
-   - He cannot create blog posts
-   - He cannot edit blog posts
-admin
-   - unrestricted access to everything.
+   He can view blog posts
+   He cannot add comments
+   He cannot create blog posts
+   He cannot edit blog posts
+- admin
+   unrestricted access to everything.
 
 
 When post is unpublished
 
 - Logged-in user (who has signed up)
-   - He cannot comment on blog posts
-   - He cannot view blog posts.
+    He cannot comment on blog posts
+    He cannot view blog posts.
 
 
 Getting this done with ActsAsAuthoritah
@@ -62,7 +62,7 @@ Getting this done with ActsAsAuthoritah
    A sample - 
 
    def usertype(args={})
-     role.name
+   role.name
    end
 
    Implementation of usertype method can vary, based on the role-system you are following. Just make sure it always returns role of the user (string), which should match with the roles
@@ -74,13 +74,13 @@ Getting this done with ActsAsAuthoritah
    A sample - 
 
    def present_user
-      current_user.to_s == "false" ? User.new : current_user
+   current_user.to_s == "false" ? User.new : current_user
    end
 
 5. in Post model
 
    def status
-     published? ? nil : 'unpublished'
+   published? ? nil : 'unpublished'
    end
 
    This will be used to let authoritah know when a post in in unpublished state, so that authoritah can override the default rules with those in unpublished.xls
@@ -89,9 +89,9 @@ Getting this done with ActsAsAuthoritah
 
 7. To make sure that links are shown only to appropriate users, add lines like these in in the views.
 
-   <% if present_user.can_post_a_comment?(:context => @post.status) %>
+     <% if present_user.can_post_a_comment?(:context => @post.status) %>
      <%= link_to 'Add a comment', {:controller => 'comment', :action => 'new', :post_id => @post.id} %>
-   <% end%>
+     <% end%>
 
 8. Thats all - your application is access controlled by ActsAsAuthoritah now. 
 

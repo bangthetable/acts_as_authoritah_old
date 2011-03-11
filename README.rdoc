@@ -52,13 +52,15 @@ When post is unpublished
 
 1. Create an excel sheet (or download a sample https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls)
    and save it at config/acl/default.xls. When the post is unpublished, there are two rules which are different from the default set of rules.
-   We need to add these two rules alone in config/acl/unpublished.xls https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/default.xls
+   We need to add these two rules alone in config/acl/unpublished.xls https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/unpublished.xls
 
 2. Add the following line to your User model (or to whichever is your equivalent of User model)
 
     acts_as_authoritah :acl_folder => File.join(RAILS_ROOT,"config","acl")
 
-3. ActsAsAuthoritah needs a wrapper around your 'current_user' method (name may differ based on the authentication system you use), to make it return an empty User object when
+3. Add 'include ActsAsAuthoritah' in ApplicationController
+
+4. ActsAsAuthoritah needs a wrapper around your 'current_user' method (name may differ based on the authentication system you use), to make it return an empty User object when
    user is not logged in.
 
    A sample - 
@@ -67,7 +69,7 @@ When post is unpublished
        current_user.to_s == "false" ? User.new : current_user
      end
 
-4. In your User model, you need to define a 'usertype' method which should return the role of that user (same as in the first row of the spreadsheet).
+5. In your User model, you need to define a 'usertype' method which should return the role of that user (same as in the first row of the spreadsheet).
 
    A sample -
 
@@ -81,7 +83,7 @@ When post is unpublished
    specified in the first row of the spreadsheet.
 
 
-5. in Post model
+6. in Post model
 
      def status
        published? ? nil : 'unpublished'
@@ -89,15 +91,17 @@ When post is unpublished
 
    This will be used to let authoritah know when a post in in unpublished state, so that authoritah can override the default rules with those in unpublished.xls
 
-6. For access control of methods in PostController and CommentController, put these two files post_controller_access.rb , comments_controller_access.rb in lib/access_control/
+7. For access control of methods in PostController and CommentController, put these two files in lib/access_control/
+   https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/comment_controller_access.rb
+   https://github.com/bangthetable/acts_as_authoritah/blob/master/sample/post_controller_access.rb
 
-7. To make sure that links are shown only to appropriate users, add lines like these in in the views.
+8. To make sure that links are shown only to appropriate users, add lines like these in in the views.
 
      <% if present_user.can_post_a_comment?(:context => @post.status) %>
      <%= link_to 'Add a comment', {:controller => 'comment', :action => 'new', :post_id => @post.id} %>
      <% end%>
 
-8. Thats all - your application is access controlled by ActsAsAuthoritah now. 
+9. Thats all - your application is access controlled by ActsAsAuthoritah now.
 
    - You can grant/revoke access to different features to different roles just by editing the spreadsheets.
    - You can add a new user-role by adding a column in the spreadsheets.

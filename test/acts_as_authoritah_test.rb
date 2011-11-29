@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative 'test_helper'
 
 class ActsAsAuthoritahTest < Test::Unit::TestCase
   def test_responds_to_all_can_methods

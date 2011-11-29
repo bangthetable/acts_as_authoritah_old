@@ -1,4 +1,5 @@
 require "active_record"
+require "active_support"
 require "spreadsheet"
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))

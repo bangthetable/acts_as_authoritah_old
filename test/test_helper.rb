@@ -4,13 +4,13 @@ require 'factory_girl'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'activerecord_test_connector' 
 require 'acts_as_authoritah'
+require 'activerecord_test_connector' 
 
 ActiveRecordTestConnector.setup
 
 #load users factory
-require 'test/factories/users'
+require_relative 'factories/users'
 
 class Test::Unit::TestCase
   protected

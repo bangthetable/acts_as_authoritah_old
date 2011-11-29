@@ -1,4 +1,4 @@
-Dir[File.join('lib','access_control','*.rb')].each {|f| require f}
+Dir[File.join(Dir.pwd,'lib','access_control','*.rb')].each {|f| require f}
 
 module AccessControls
   def self.access_control(controller)
